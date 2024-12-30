@@ -91,7 +91,7 @@ def get_amount(balance_decimals_name: dict) -> int:
     """
     balance_human = balance_decimals_name['amount_in_wei'] / (10 ** balance_decimals_name['decimals'])
     cprint(f"На вашем счету: {balance_human:.6f} {balance_decimals_name['name']} токена", 'light_green')
-    max_amount = balance_human * 0.98
+    max_amount = balance_human
     while True:
         try:
             amount = float(input(colored(f"Введите сумму перевода {balance_decimals_name['name']} токена: ", 'light_green')))
@@ -102,7 +102,7 @@ def get_amount(balance_decimals_name: dict) -> int:
                 cprint(f"На вашем счету нет токенов", 'light_red')
                 exit(1)
             elif max_amount < amount:
-                cprint(f"Введенная сумма превышает баланс с учетом коммисии 2%", 'light_red')
+                cprint(f"Введенная сумма превышает баланс", 'light_red')
                 cprint(f"Максимальная возможная сумма {max_amount}", 'light_red')
                 continue
             return int(amount * (10**balance_decimals_name['decimals']))
