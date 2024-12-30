@@ -6,7 +6,7 @@ from functions import get_amount
 from termcolor import colored
 
 # Настройка логирования
-file_log = logging.FileHandler('file.log')
+file_log = logging.FileHandler('file.log', encoding='utf-8')
 console_out = logging.StreamHandler()
 logging.basicConfig(handlers=(file_log, console_out),
                     level=logging.INFO,
